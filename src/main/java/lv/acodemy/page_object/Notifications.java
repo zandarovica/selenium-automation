@@ -9,11 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
 
 public class Notifications {
-
     ChromeDriver driver = LocalDriverManager.getInstance();
     WebDriverWait waiter;
 
-    public Notifications( WebDriverWait wait) {
+    public Notifications(WebDriverWait wait) {
         this.waiter = wait;
     }
 

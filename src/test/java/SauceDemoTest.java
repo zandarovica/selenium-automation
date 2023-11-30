@@ -1,55 +1,66 @@
-//import org.assertj.core.api.Assertions;
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
-//import org.openqa.selenium.support.ui.WebDriverWait;
-//import org.testng.annotations.AfterMethod;
-//import org.testng.annotations.Test;
-//
-//import java.time.Duration;
-//
-//
-//public class SauceDemoTest {
-//
-//    ChromeDriver driver = new ChromeDriver();
-//    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//
-//    private final String DEMO_URL = "https://www.saucedemo.com/v1/";
-//
-//    @Test
-//    public void loginSauceDemoTest() {
-//        driver.get(DEMO_URL);
-//        WebElement userNameField = driver.findElement(By.id("user-name"));
-//        userNameField.sendKeys("problem_user");
-//        WebElement passwordField = driver.findElement(By.id("password"));
-//        passwordField.sendKeys("secret_sauce");
-//        WebElement loginButton = driver.findElement(By.id("login-button"));
-//        loginButton.click();
-//        WebElement inventoryItemName = driver.findElement(By.className("inventory_item_name"));
-//        Assertions.assertThat(inventoryItemName.getText()).isEqualTo("Sauce Labs Backpack");
-//        driver.findElement(By.className("bm-burger-button")).click();
-//        WebElement logout = driver.findElement(By.xpath("//a[@id='logout_sidebar_link']"));
-//        wait.until(ExpectedConditions.elementToBeClickable(logout));
-//        logout.click();
-//
-//
-////    @Test
-////    public void invalidLoginSauceDemo() {
-////        driver.get(DEMO_URL);
-//        WebElement userField = driver.findElement(By.id("user-name"));
-//        userField.sendKeys("problemuser");
-//        WebElement validPasswordField = driver.findElement(By.id("password"));
-//        validPasswordField.sendKeys("secret_sauce");
-//        WebElement invalidLoginButton = driver.findElement(By.id("login-button"));
-//        invalidLoginButton.click();
-//        WebElement notificationMessage = driver.findElement(By.className("login-box"));
-//        Assertions.assertThat(notificationMessage.getText()).isEqualTo("Epic sadface: Username and password do not match any user in this service");
-//    }
-//
-//    @AfterMethod
-//    public void tearDown() {
-//        driver.close();
-//        driver.quit();
-//    }
-//}
+import lv.acodemy.page_object.sauce_pages.InventoryPage;
+import lv.acodemy.page_object.sauce_pages.LoginPage;
+import lv.acodemy.utils.LocalDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.time.Duration;
+
+import static lv.acodemy.utils.ConfigurationProperties.getConfiguration;
+import static lv.acodemy.utils.LocalDriverManager.closeDriver;
+import static lv.acodemy.utils.constants.ErrorMessages.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
+
+public class SauceDemoTest {
+    WebDriver driver;
+    LoginPage loginPage;
+    InventoryPage inventoryPage;
+    Wait<WebDriver> wait;
+
+    @BeforeMethod
+    public void before() {
+        driver = LocalDriverManager.getInstance();
+        loginPage = new LoginPage();
+        inventoryPage = new InventoryPage();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    }
+
+    @Test(description = "Test successful login")
+    public void testLogin() {
+        driver.get(getConfiguration().getString("sauce.demo.url"));
+        loginPage.authorize("standard_user", "secret_sauce");
+        wait.until(visibilityOfAllElements(inventoryPage.getInventoryItems()));
+        assertThat(inventoryPage.getInventoryItems()).hasSize(6);
+    }
+
+    @Test(description = "Test authorization incorrect password")
+    public void testLoginIncorrectCredentials() {
+        driver.get(getConfiguration().getString("sauce.demo.url"));
+        loginPage.authorize("standard_user", "incorrect_password");
+        assertThat(loginPage.getErrorMessage().getText()).isEqualTo(USER_AND_PASSWORD_DO_NOT_MATCH);
+    }
+
+    @Test(description = "Test authorization no login and password")
+    public void testLoginNoCredentials() {
+        driver.get(getConfiguration().getString("sauce.demo.url"));
+        loginPage.authorize("", "");
+        assertThat(loginPage.getErrorMessage().getText()).isEqualTo(USER_NAME_IS_REQUIRED);
+    }
+
+    @Test(description = "Test authorization login with empty password")
+    public void testLoginNoPassword() {
+        driver.get(getConfiguration().getString("sauce.demo.url"));
+        loginPage.authorize("standard_user", "");
+        assertThat(loginPage.getErrorMessage().getText()).isEqualTo(PASSWORD_IS_REQUIRED);
+    }
+
+    @AfterMethod
+    public void after() {
+        closeDriver();
+    }
+}

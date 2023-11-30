@@ -36,8 +36,25 @@ public class StudentAppTest {
         notifications = new Notifications(wait);
     }
 
-    @Test(invocationCount = 2)
+    @Test()
     public void createStudentTest() {
+        driver.manage().timeouts().implicitlyWait(ofSeconds(getConfiguration().getLong("wait.time")));
+
+        logger.info("Will open now: " + getConfiguration().getString("app.url"));
+        driver.get(getConfiguration().getString("app.url"));
+
+        mainPage.openAddStudentForm();
+
+        addStudentPage.setNameField(fakeData.name().fullName());
+        addStudentPage.setMailField(fakeData.internet().emailAddress());
+        addStudentPage.setGender("female");
+        addStudentPage.submitStudent();
+
+        assertThat(notifications.getNotificationSuccessMessage()).isEqualTo("Student successfully added");
+    }
+
+    @Test()
+    public void createStudentTest2() {
         driver.manage().timeouts().implicitlyWait(ofSeconds(getConfiguration().getLong("wait.time")));
 
         logger.info("Will open now: " + getConfiguration().getString("app.url"));

@@ -19,13 +19,14 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllE
 
 public class SauceDemoTestSecond {
 
-    WebDriver driver = LocalDriverManager.getInstance();
+    WebDriver driver;
     LoginPage loginPage = new LoginPage();
     InventoryPage inventoryPage = new InventoryPage();
     Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
     @Test(description = "Test successful login")
     public void testLogin() {
+        driver = LocalDriverManager.getInstance();
         driver.get(getConfiguration().getString("sauce.demo.url"));
         loginPage.authorize("problem_user", "secret_sauce");
         wait.until(visibilityOfAllElements(inventoryPage.getInventoryItems()));

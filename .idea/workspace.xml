@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90ce37b0-ba4e-44f8-8235-b4f64fbdc350" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="90ce37b0-ba4e-44f8-8235-b4f64fbdc350" name="Changes" comment="[master]: Fix">
+      <change afterPath="$PROJECT_DIR$/src/main/java/lv/acodemy/page_object/sauce_pages/InventoryPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lv/acodemy/page_object/sauce_pages/LoginPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/SauceDemoTestSecond.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lv/acodemy/page_object/AddStudentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lv/acodemy/page_object/AddStudentPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lv/acodemy/page_object/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lv/acodemy/page_object/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lv/acodemy/page_object/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lv/acodemy/page_object/Notifications.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lv/acodemy/utils/LocalDriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lv/acodemy/utils/LocalDriverManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ChromeDriverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ChromeDriverTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/StudentAppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StudentAppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,9 +49,15 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn test" />
+    </option>
+  </component>
   <component name="RunManager" selected="TestNG.StudentAppTest">
     <configuration name="SauceDemoTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="selenium-automation" />
@@ -60,12 +70,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SauceDemoTest.invalidLoginSauceDemo" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="SauceDemoTestSecond" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="selenium-automation" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SauceDemoTest" />
-      <option name="METHOD_NAME" value="invalidLoginSauceDemo" />
-      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="MAIN_CLASS_NAME" value="SauceDemoTestSecond" />
+      <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
       <method v="2">
@@ -110,10 +119,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.StudentAppTest" />
-        <item itemvalue="TestNG.StudentAppTest.createStudentTest" />
+        <item itemvalue="TestNG.SauceDemoTestSecond" />
         <item itemvalue="TestNG.SauceDemoTest" />
+        <item itemvalue="TestNG.StudentAppTest.createStudentTest" />
         <item itemvalue="TestNG.SauceDemoTest.loginSauceDemoTest" />
-        <item itemvalue="TestNG.SauceDemoTest.invalidLoginSauceDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -134,11 +143,20 @@
       <option name="project" value="LOCAL" />
       <updated>1700765778558</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[master]: Fix">
+      <option name="closed" value="true" />
+      <created>1700766999743</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700766999743</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[master]: Upload project" />
-    <option name="LAST_COMMIT_MESSAGE" value="[master]: Upload project" />
+    <MESSAGE value="[master]: Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="[master]: Fix" />
   </component>
 </project>
